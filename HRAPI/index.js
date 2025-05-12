@@ -14,7 +14,24 @@ app.get('/', async (req, res) => {
         res.status(500).json({ Error: err.message })
     }
 });
-
+app.get('/totallemployee', async (req, res) => {
+    try {
+        const result = await pool.query('select * from employees');
+        res.json(result.rows);
+    }
+    catch (error) {
+        res.status(500).json({ Error: err.message });
+    }
+});
+app.get('/country', async (req, res) => {
+    try {
+        const result = await pool.query('select * from countries ');
+        res.json(result.rows);
+    }
+    catch (error) {
+        res.status(500).json({ Error: err.message });
+    }
+});
 app.get('/emp', async (req, res) => {
     try {
         const result = await pool.query('select * from employees');
